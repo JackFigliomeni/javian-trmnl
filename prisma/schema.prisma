@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Role values: "STAFF" | "CLIENT"
+// OrderStatus values: "PENDING" | "CONFIRMED" | "IN_PROGRESS" | "COMPLETED" | "CANCELLED"
+
+model User {
+  id         String   @id @default(cuid())
+  username   String   @unique
+  password   String
+  role       String   @default("CLIENT")
+  clientName String?
+  createdAt  DateTime @default(now())
+  orders     Order[]
+}
+
+model Order {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  providerName     String
+  flightNumber     String
+  departureTime    DateTime
+  passengerCount   Int
+  deliveryLocation String
+  foodDetails      String
+  specialNotes     String?
+  status           String   @default("PENDING")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
