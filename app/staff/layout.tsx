@@ -32,12 +32,11 @@ export default async function StaffLayout({
             {/* Left: Brand */}
             <div className="flex items-center gap-3">
               <Image
-                src="https://professorjavas.com/wp-content/uploads/2024/09/Coffee_Shop_22@2x.png"
+                src="/professor-logo.png"
                 alt="Professor Java's Logo"
-                width={28}
-                height={22}
+                width={40}
+                height={58}
                 className="object-contain"
-                unoptimized
               />
               <div className="leading-tight">
                 <p className="text-[#F5EEE6] font-bold text-sm tracking-wide">

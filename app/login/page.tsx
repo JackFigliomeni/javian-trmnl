@@ -56,12 +56,11 @@ export default function LoginPage() {
           {/* Logo + Brand */}
           <div className="flex flex-col items-center mb-5">
             <Image
-              src="https://professorjavas.com/wp-content/uploads/2024/09/Coffee_Shop_22@2x.png"
+              src="/professor-logo.png"
               alt="Professor Java's Logo"
-              width={60}
-              height={48}
+              width={90}
+              height={130}
               className="object-contain mb-3"
-              unoptimized
             />
             <h1 className="text-xl font-bold text-[#2C1810] tracking-wide text-center" style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}>
               PROFESSOR JAVA&apos;S
