@@ -6,16 +6,26 @@ import StaffOrdersTable from '@/components/StaffOrdersTable'
 function StatCard({
   label,
   value,
-  colorClass,
+  valueColor,
 }: {
   label: string
   value: number
-  colorClass: string
+  valueColor?: string
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-      <p className="text-sm text-gray-500 mb-1">{label}</p>
-      <p className={`text-3xl font-bold ${colorClass}`}>{value}</p>
+    <div className="border border-[#C4A882] bg-[#FBF7F2] p-4 rounded-sm">
+      <p
+        className="uppercase text-[#6B4226] mb-1"
+        style={{ fontSize: '11px', letterSpacing: '0.08em' }}
+      >
+        {label}
+      </p>
+      <p
+        className="text-2xl font-bold"
+        style={{ color: valueColor ?? '#7B1A1A' }}
+      >
+        {value}
+      </p>
     </div>
   )
 }
@@ -61,24 +71,26 @@ export default async function StaffPage() {
     createdAt: o.createdAt.toISOString(),
     updatedAt: o.updatedAt.toISOString(),
     clientName: o.user.clientName ?? o.user.username,
+    attachmentUrl: (o as { attachmentUrl?: string }).attachmentUrl ?? undefined,
+    attachmentName: (o as { attachmentName?: string }).attachmentName ?? undefined,
   }))
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-[#1a1a2e]">Staff Dashboard</h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <h1 className="text-2xl font-bold text-[#2C1810]">Staff Dashboard</h1>
+        <p className="text-[#6B4226] text-sm mt-1">
           Manage and update all catering orders.
         </p>
       </div>
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard label="Total Orders" value={total} colorClass="text-[#1a1a2e]" />
-        <StatCard label="Pending" value={pending} colorClass="text-amber-600" />
-        <StatCard label="In Progress" value={inProgress} colorClass="text-[#2ea3f2]" />
-        <StatCard label="Completed Today" value={completedToday} colorClass="text-green-600" />
+        <StatCard label="Total Orders" value={total} valueColor="#2C1810" />
+        <StatCard label="Pending" value={pending} valueColor="#7B1A1A" />
+        <StatCard label="In Progress" value={inProgress} valueColor="#6B4226" />
+        <StatCard label="Completed Today" value={completedToday} valueColor="#2C4A1E" />
       </div>
 
       {/* Orders Table */}

@@ -3,13 +3,33 @@
 @tailwind utilities;
 
 :root {
-  --brand-blue: #2ea3f2;
-  --brand-dark: #0e1628;
-  --brand-navy: #1a1a2e;
-  --bg-page: #f8f9fb;
+  --maroon: #7B1A1A;
+  --maroon-dark: #5C1212;
+  --brown-dark: #3D2208;
+  --brown-mid: #6B4226;
+  --cream: #F5EEE6;
+  --parchment: #FBF7F2;
+  --text: #2C1810;
+  --border: #C4A882;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background-color: var(--bg-page);
-  color: var(--brand-navy);
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: #F5EEE6;
+  color: #2C1810;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+input, textarea, select, button {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #2C1810;
 }

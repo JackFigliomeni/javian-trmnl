@@ -24,40 +24,40 @@ function formatDateTime(date: Date) {
 
 export default function OrderCard({ order }: { order: Order }) {
   return (
-    <div className="border border-gray-100 rounded-xl p-4 bg-[#f8f9fb] hover:shadow-sm transition-shadow">
+    <div className="border border-[#C4A882] bg-[#FBF7F2] p-4 rounded-sm">
       {/* Flight number + status */}
       <div className="flex items-start justify-between mb-3">
         <div>
-          <p className="text-xl font-bold text-[#1a1a2e] tracking-tight">
+          <p className="text-xl font-bold text-[#7B1A1A]">
             {order.flightNumber}
           </p>
-          <p className="text-sm text-gray-500 mt-0.5">{order.providerName}</p>
+          <p className="text-sm text-[#6B4226] mt-0.5">{order.providerName}</p>
         </div>
         <OrderStatusBadge status={order.status} />
       </div>
 
       {/* Details */}
-      <div className="space-y-1.5 text-sm text-gray-600">
-        <div className="flex items-center gap-1.5">
-          <span className="text-gray-400">🕐</span>
+      <div className="space-y-1.5 text-sm text-[#2C1810]">
+        <div>
+          <span className="text-[#6B4226]">Departure: </span>
           <span>{formatDateTime(order.departureTime)}</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="text-gray-400">👥</span>
+        <div>
+          <span className="text-[#6B4226]">Passengers: </span>
           <span>
             {order.passengerCount}{' '}
             {order.passengerCount === 1 ? 'passenger' : 'passengers'}
           </span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="text-gray-400">📍</span>
+        <div>
+          <span className="text-[#6B4226]">Location: </span>
           <span className="truncate">{order.deliveryLocation}</span>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="mt-3 pt-3 border-t border-gray-200">
-        <p className="text-xs text-gray-400">
+      <div className="mt-3 pt-3 border-t border-[#C4A882]">
+        <p className="text-xs text-[#6B4226]">
           Submitted {formatDateTime(order.createdAt)}
         </p>
       </div>

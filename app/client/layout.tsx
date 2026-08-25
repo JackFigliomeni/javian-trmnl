@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { signOut } from '@/auth'
+import Image from 'next/image'
 
 export default async function ClientLayout({
   children,
@@ -20,30 +21,34 @@ export default async function ClientLayout({
   const clientName = session.user?.clientName ?? session.user?.username ?? 'Client'
 
   return (
-    <div className="min-h-screen bg-[#f8f9fb]">
+    <div className="min-h-screen bg-[#F5EEE6]">
       {/* Top Nav */}
-      <nav className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-10">
+      <nav className="bg-[#3D2208] sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between py-3 h-14">
             {/* Left: Brand */}
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#2ea3f2] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                PJ
-              </div>
+              <Image
+                src="https://professorjavas.com/wp-content/uploads/2024/09/Coffee_Shop_22@2x.png"
+                alt="Professor Java's Logo"
+                width={28}
+                height={22}
+                className="object-contain"
+                unoptimized
+              />
               <div className="leading-tight">
-                <p className="text-[#1a1a2e] font-bold text-sm tracking-tight">
+                <p className="text-[#F5EEE6] font-bold text-sm tracking-wide">
                   PROFESSOR JAVA&apos;S
                 </p>
-                <p className="text-[#2ea3f2] text-[10px] tracking-widest font-semibold">
+                <p className="text-[#C4A882] uppercase tracking-wider" style={{ fontSize: '10px' }}>
                   CATERING &amp; CONCIERGE
                 </p>
               </div>
             </div>
 
             {/* Center: Welcome */}
-            <p className="hidden sm:block text-gray-500 text-sm">
-              Welcome,{' '}
-              <span className="font-semibold text-[#1a1a2e]">{clientName}</span>
+            <p className="hidden sm:block text-[#C4A882] text-sm">
+              Welcome, {clientName}
             </p>
 
             {/* Right: Sign Out */}
@@ -55,7 +60,7 @@ export default async function ClientLayout({
             >
               <button
                 type="submit"
-                className="text-sm text-gray-500 hover:text-[#2ea3f2] font-medium transition-colors px-3 py-1.5 rounded-lg hover:bg-blue-50"
+                className="text-sm text-[#C4A882] hover:text-[#F5EEE6]"
               >
                 Sign Out
               </button>
