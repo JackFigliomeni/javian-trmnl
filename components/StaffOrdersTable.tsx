@@ -33,6 +33,7 @@ interface Order {
   updatedAt: string
   attachmentUrl?: string
   attachmentName?: string
+  orderPrice?: number
 }
 
 function formatDateTime(iso: string) {
@@ -59,7 +60,7 @@ function DetailModal({
       onClick={onClose}
     >
       <div
-        className="bg-[#FBF7F2] border border-[#C4A882] rounded-sm max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto"
+        className="bg-[#FBF7F2] border border-[#C4A882] max-w-lg w-full p-6 relative max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-4">
@@ -90,6 +91,14 @@ function DetailModal({
           <div className="py-2.5 grid grid-cols-2 gap-2" style={{ borderBottom: '1px solid #C4A882' }}>
             <span className="text-[#6B4226]">Location</span>
             <span className="text-[#2C1810]">{order.deliveryLocation}</span>
+          </div>
+          <div className="py-2.5 grid grid-cols-2 gap-2" style={{ borderBottom: '1px solid #C4A882' }}>
+            <span className="text-[#6B4226]">Price</span>
+            <span className="text-[#2C1810]">
+              {order.orderPrice !== undefined
+                ? `$${order.orderPrice.toFixed(2)}`
+                : 'Not set'}
+            </span>
           </div>
           <div className="py-2.5" style={{ borderBottom: '1px solid #C4A882' }}>
             <p className="text-[#6B4226] mb-1.5">Food Order Details</p>
@@ -180,6 +189,32 @@ export default function StaffOrdersTable({
     }
   }
 
+  async function handlePriceChange(orderId: string, value: string) {
+    const parsed = parseFloat(value)
+    if (isNaN(parsed) || !isFinite(parsed)) return
+
+    const previousOrders = orders
+    setOrders((prev) =>
+      prev.map((o) => (o.id === orderId ? { ...o, orderPrice: parsed } : o))
+    )
+
+    try {
+      const res = await fetch(`/api/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderPrice: parsed }),
+      })
+
+      if (!res.ok) {
+        setOrders(previousOrders)
+        console.error('Failed to update price')
+      }
+    } catch {
+      setOrders(previousOrders)
+      console.error('Network error updating price')
+    }
+  }
+
   const filterLabels: Record<'ALL' | OrderStatus, string> = {
     ALL: 'All',
     PENDING: 'Pending',
@@ -190,10 +225,13 @@ export default function StaffOrdersTable({
   }
 
   return (
-    <div className="bg-[#FBF7F2] border border-[#C4A882] rounded-sm">
+    <div className="bg-[#FBF7F2] border border-[#C4A882]">
       {/* Filter Tabs */}
       <div className="px-6 pt-5 pb-4 border-b border-[#C4A882]">
-        <h2 className="text-base font-bold text-[#2C1810] mb-3">
+        <h2
+          className="text-base font-bold text-[#2C1810] pb-2 mb-4"
+          style={{ borderBottom: '1px solid #7B1A1A' }}
+        >
           All Orders
         </h2>
         <div className="flex flex-wrap gap-4">
@@ -230,6 +268,7 @@ export default function StaffOrdersTable({
               <th className="px-4 py-3 font-medium">Pax</th>
               <th className="px-4 py-3 font-medium">Location</th>
               <th className="px-4 py-3 font-medium">Status</th>
+              <th className="px-4 py-3 font-medium">Price</th>
               <th className="px-4 py-3 font-medium">Update</th>
               <th className="px-4 py-3 font-medium"></th>
             </tr>
@@ -238,7 +277,7 @@ export default function StaffOrdersTable({
             {filtered.length === 0 && (
               <tr>
                 <td
-                  colSpan={9}
+                  colSpan={10}
                   className="px-6 py-10 text-center text-[#6B4226] text-sm border-b border-[#C4A882]"
                 >
                   No orders found.
@@ -272,13 +311,42 @@ export default function StaffOrdersTable({
                   <OrderStatusBadge status={order.status} />
                 </td>
                 <td className="px-4 py-3 border-b border-[#C4A882]">
+                  {order.orderPrice !== undefined ? (
+                    <span className="text-sm text-[#2C1810]">
+                      ${order.orderPrice.toFixed(2)}
+                    </span>
+                  ) : (
+                    <input
+                      type="number"
+                      placeholder="$0.00"
+                      step="0.01"
+                      min="0"
+                      className="w-20 px-2 py-1 text-xs focus:outline-none"
+                      style={{
+                        border: '1px solid #C4A882',
+                        backgroundColor: '#FBF7F2',
+                        color: '#2C1810',
+                      }}
+                      onFocus={(e) => {
+                        e.currentTarget.style.borderColor = '#7B1A1A'
+                      }}
+                      onBlur={(e) => {
+                        e.currentTarget.style.borderColor = '#C4A882'
+                        if (e.currentTarget.value) {
+                          handlePriceChange(order.id, e.currentTarget.value)
+                        }
+                      }}
+                    />
+                  )}
+                </td>
+                <td className="px-4 py-3 border-b border-[#C4A882]">
                   <select
                     value={order.status}
                     disabled={updatingId === order.id}
                     onChange={(e) =>
                       handleStatusChange(order.id, e.target.value)
                     }
-                    className="border border-[#C4A882] rounded-sm text-xs px-2 py-1 bg-[#FBF7F2] text-[#2C1810] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50 cursor-pointer"
+                    className="border border-[#C4A882] text-xs px-2 py-1 bg-[#FBF7F2] text-[#2C1810] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50 cursor-pointer"
                   >
                     {ALL_STATUSES.map((s) => (
                       <option key={s} value={s}>
@@ -311,7 +379,7 @@ export default function StaffOrdersTable({
         {filtered.map((order) => (
           <div
             key={order.id}
-            className="border border-[#C4A882] bg-[#FBF7F2] rounded-sm p-4 space-y-3"
+            className="border border-[#C4A882] bg-[#FBF7F2] p-4 space-y-3"
           >
             <div className="flex items-start justify-between">
               <div>
@@ -339,13 +407,19 @@ export default function StaffOrdersTable({
                 <span className="text-[#6B4226]">Location: </span>
                 {order.deliveryLocation}
               </p>
+              <p>
+                <span className="text-[#6B4226]">Price: </span>
+                {order.orderPrice !== undefined
+                  ? `$${order.orderPrice.toFixed(2)}`
+                  : 'Not set'}
+              </p>
             </div>
             <div className="flex items-center gap-3 pt-1">
               <select
                 value={order.status}
                 disabled={updatingId === order.id}
                 onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                className="flex-1 border border-[#C4A882] rounded-sm px-3 py-2 text-sm text-[#2C1810] bg-[#FBF7F2] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50"
+                className="flex-1 border border-[#C4A882] px-3 py-2 text-sm text-[#2C1810] bg-[#FBF7F2] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50"
               >
                 {ALL_STATUSES.map((s) => (
                   <option key={s} value={s}>

@@ -29,18 +29,38 @@ export async function PATCH(
   try {
     const { id } = await params
     const body = await req.json()
-    const { status } = body
+    const { status, orderPrice } = body
 
-    if (!status || !VALID_STATUSES.includes(status as OrderStatus)) {
+    // At least one updatable field must be present
+    if (status === undefined && orderPrice === undefined) {
+      return NextResponse.json(
+        { error: 'No updatable fields provided.' },
+        { status: 400 }
+      )
+    }
+
+    // Validate status if provided
+    if (status !== undefined && !VALID_STATUSES.includes(status as OrderStatus)) {
       return NextResponse.json(
         { error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` },
         { status: 400 }
       )
     }
 
+    // Build the data object
+    const data: { status?: OrderStatus; orderPrice?: number } = {}
+
+    if (status !== undefined) {
+      data.status = status as OrderStatus
+    }
+
+    if (orderPrice !== undefined && typeof orderPrice === 'number' && isFinite(orderPrice)) {
+      data.orderPrice = orderPrice
+    }
+
     const order = await prisma.order.update({
       where: { id },
-      data: { status: status as OrderStatus },
+      data,
     })
 
     return NextResponse.json(order)

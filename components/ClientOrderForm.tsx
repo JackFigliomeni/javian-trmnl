@@ -95,7 +95,7 @@ export default function ClientOrderForm() {
 
   return (
     <div className="bg-[#FBF7F2] border border-[#C4A882] rounded-sm p-6">
-      <h2 className="text-base font-bold text-[#2C1810] mb-1">
+      <h2 className="text-base font-bold text-[#2C1810] pb-2 mb-4" style={{ borderBottom: '1px solid #7B1A1A' }}>
         New Catering Order
       </h2>
       <p className="text-[#6B4226] text-sm mb-6">

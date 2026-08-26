@@ -20,7 +20,7 @@ export default async function ClientPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-[#2C1810]">Order Portal</h1>
+        <h1 className="text-2xl font-bold text-[#2C1810] pb-2 mb-4" style={{ borderBottom: '1px solid #7B1A1A' }}>Order Portal</h1>
         <p className="text-[#6B4226] text-sm mt-1">
           Submit a new catering order below or view your order history.
         </p>
@@ -28,7 +28,7 @@ export default async function ClientPage() {
 
       {/* Section A: Service Pricing */}
       <div className="bg-[#FBF7F2] border border-[#C4A882] rounded-sm p-6">
-        <h2 className="text-base font-bold text-[#2C1810] mb-1">Service Pricing</h2>
+        <h2 className="text-base font-bold text-[#2C1810] pb-2 mb-4" style={{ borderBottom: '1px solid #7B1A1A' }}>Service Pricing</h2>
         <p className="text-xs text-[#6B4226] mb-4">
           All pricing is per person unless noted. Contact us to confirm rates for your order.
         </p>
@@ -84,7 +84,7 @@ export default async function ClientPage() {
 
       {/* Order History */}
       <div className="bg-[#FBF7F2] border border-[#C4A882] rounded-sm p-6">
-        <h2 className="text-base font-bold text-[#2C1810] mb-1">
+        <h2 className="text-base font-bold text-[#2C1810] pb-2 mb-4" style={{ borderBottom: '1px solid #7B1A1A' }}>
           My Orders
         </h2>
         <p className="text-[#6B4226] text-sm mb-5">
