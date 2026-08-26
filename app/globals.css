@@ -11,6 +11,7 @@
   --parchment: #FBF7F2;
   --text: #2C1810;
   --border: #C4A882;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
 }
 
 * {
@@ -18,20 +19,24 @@
 }
 
 body {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant);
   background-color: #F5EEE6;
   color: #2C1810;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
+  font-weight: 400;
 }
 
 input, textarea, select, button {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant);
+  font-size: 15px;
 }
 
 h1, h2, h3, h4 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-cormorant);
   color: #2C1810;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* Sharper input focus */

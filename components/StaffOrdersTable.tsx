@@ -311,33 +311,21 @@ export default function StaffOrdersTable({
                   <OrderStatusBadge status={order.status} />
                 </td>
                 <td className="px-4 py-3 border-b border-[#C4A882]">
-                  {order.orderPrice !== undefined ? (
-                    <span className="text-sm text-[#2C1810]">
-                      ${order.orderPrice.toFixed(2)}
-                    </span>
-                  ) : (
-                    <input
-                      type="number"
-                      placeholder="$0.00"
-                      step="0.01"
-                      min="0"
-                      className="w-20 px-2 py-1 text-xs focus:outline-none"
-                      style={{
-                        border: '1px solid #C4A882',
-                        backgroundColor: '#FBF7F2',
-                        color: '#2C1810',
-                      }}
-                      onFocus={(e) => {
-                        e.currentTarget.style.borderColor = '#7B1A1A'
-                      }}
-                      onBlur={(e) => {
-                        e.currentTarget.style.borderColor = '#C4A882'
-                        if (e.currentTarget.value) {
-                          handlePriceChange(order.id, e.currentTarget.value)
-                        }
-                      }}
-                    />
-                  )}
+                  <input
+                    type="number"
+                    placeholder="--"
+                    step="0.01"
+                    min="0"
+                    defaultValue={order.orderPrice ?? ''}
+                    key={order.id + '-price'}
+                    className="w-20 px-2 py-1 text-sm focus:outline-none"
+                    style={{ border: '1px solid #C4A882', backgroundColor: 'transparent', color: '#2C1810' }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = '#7B1A1A' }}
+                    onBlur={(e) => {
+                      e.currentTarget.style.borderColor = '#C4A882'
+                      if (e.currentTarget.value) handlePriceChange(order.id, e.currentTarget.value)
+                    }}
+                  />
                 </td>
                 <td className="px-4 py-3 border-b border-[#C4A882]">
                   <select

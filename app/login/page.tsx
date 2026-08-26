@@ -96,7 +96,7 @@ export default function LoginPage() {
             </p>
             <h1
               className="text-xl font-bold text-[#2C1810] tracking-wide text-center"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+
             >
               PROFESSOR JAVA&apos;S
             </h1>
