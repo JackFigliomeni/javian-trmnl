@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import StaffOrdersTable from '@/components/StaffOrdersTable'
 import CalendarView from '@/components/CalendarView'
+import ContactInquiriesList from '@/components/ContactInquiriesList'
 
 function StatCard({
   label,
@@ -46,6 +47,20 @@ export default async function StaffPage() {
       },
     },
   })
+
+  const inquiries = await prisma.contactInquiry.findMany({
+    orderBy: { createdAt: 'desc' },
+  })
+
+  const serializedInquiries = inquiries.map((i) => ({
+    id: i.id,
+    firstName: i.firstName,
+    lastName: i.lastName,
+    company: i.company,
+    email: i.email,
+    message: i.message,
+    createdAt: i.createdAt.toISOString(),
+  }))
 
   // Stats
   const total = orders.length
@@ -123,6 +138,9 @@ export default async function StaffPage() {
 
       {/* Calendar */}
       <CalendarView orders={serializedOrders} />
+
+      {/* Website Inquiries */}
+      <ContactInquiriesList inquiries={serializedInquiries} />
     </div>
   )
 }

@@ -20,6 +20,16 @@ model User {
   orders     Order[]
 }
 
+model ContactInquiry {
+  id        String   @id @default(cuid())
+  firstName String
+  lastName  String
+  company   String?
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
 model Order {
   id               String   @id @default(cuid())
   userId           String
