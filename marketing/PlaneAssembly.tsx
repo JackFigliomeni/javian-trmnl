@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { animate, createScope, onScroll, type Scope } from 'animejs'
+import { animate } from 'animejs/animation'
+import { createScope, type Scope } from 'animejs/scope'
+import { onScroll } from 'animejs/events'
 
 const STROKE = '#3D2208'
 
@@ -59,53 +61,53 @@ export default function PlaneAssembly() {
       <svg
         viewBox="0 0 900 500"
         width="100%"
-        style={{ maxWidth: '560px' }}
+        style={{ maxWidth: '600px' }}
         fill="none"
         stroke={STROKE}
-        strokeWidth={3.5}
+        strokeWidth={3}
         strokeLinejoin="round"
         strokeLinecap="round"
       >
         {/* Tail fin */}
         <g className="plane-part-tailFin" style={partStyle}>
-          <path d="M226,218 C190,175 155,130 142,92 L108,246 Z" />
+          <path d="M232,222 C195,175 130,95 75,25 L115,248 Z" />
         </g>
 
         {/* Tail stabilizer */}
         <g className="plane-part-tailStabilizer" style={partStyle}>
-          <path d="M250,223 C268,206 286,192 300,180 L262,233 Z" />
+          <path d="M258,220 C280,200 300,175 316,150 L212,220 Z" />
         </g>
 
         {/* Wing */}
         <g className="plane-part-wing" style={partStyle}>
-          <path d="M617,293 C605,315 592,336 581,356 C500,375 420,395 347,417 L400,381 C470,362 545,330 617,293 Z" />
+          <path d="M615,298 C602,320 590,340 580,358 C500,378 420,398 355,418 L398,388 C465,368 545,335 615,298 Z" />
         </g>
 
         {/* Engine */}
         <g className="plane-part-engine" style={partStyle}>
-          <path d="M538,353 C538,336 561,325 587,325 C613,325 634,338 634,357 C634,376 613,389 587,389 C561,389 538,374 538,353 Z" />
+          <path d="M540,362 C540,345 563,334 590,334 C617,334 638,347 638,367 C638,387 617,400 590,400 C563,400 540,387 540,362 Z" />
         </g>
 
         {/* Nose gear */}
         <g className="plane-part-noseGear" style={partStyle}>
-          <path d="M735,318 C735,330 735,342 735,352" />
-          <circle cx="735" cy="363" r="10" />
+          <path d="M750,320 C750,335 750,350 750,362" />
+          <circle cx="750" cy="373" r="10" />
         </g>
 
         {/* Main gear */}
         <g className="plane-part-mainGear" style={partStyle}>
-          <path d="M335,330 C335,343 335,356 335,368" />
-          <circle cx="335" cy="379" r="10" />
+          <path d="M335,335 C335,348 335,361 335,372" />
+          <circle cx="335" cy="383" r="10" />
         </g>
 
         {/* Fuselage (stays put as the anchor piece) */}
-        <path d="M864,300 C864,282 836,262 812,250 C772,229 720,220 650,217 C520,212 340,213 228,220 C188,222 142,232 108,250 C98,255 92,262 90,268 C104,290 132,304 168,312 C270,332 400,344 520,347 C630,350 730,344 800,322 C824,314 848,308 864,300 Z" />
+        <path d="M860,298 C838,266 800,244 755,233 C690,218 400,213 235,220 C185,222 140,232 108,250 C96,257 90,264 88,270 C92,278 105,286 130,292 C220,312 380,330 520,340 C650,348 760,338 815,315 C835,308 850,304 860,298 Z" />
 
         {/* Canopy: windows + cockpit glass */}
         <g className="plane-part-canopy" style={partStyle}>
-          <rect x="700" y="250" width="26" height="40" rx="7" />
-          {[314, 350, 386, 422, 458, 494, 530, 566, 602, 638].map((cx) => (
-            <circle key={cx} cx={cx} cy="278" r="10" />
+          <rect x="700" y="248" width="28" height="42" rx="8" />
+          {[310, 348, 386, 424, 462, 500, 538, 576, 614, 652].map((cx) => (
+            <circle key={cx} cx={cx} cy="277" r="10" />
           ))}
         </g>
       </svg>

@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useRef, type ReactNode } from 'react'
-import { animate, createScope, onScroll, type Scope } from 'animejs'
+import { animate } from 'animejs/animation'
+import { createScope, type Scope } from 'animejs/scope'
+import { onScroll } from 'animejs/events'
 
 export default function ScrollReveal({
   children,

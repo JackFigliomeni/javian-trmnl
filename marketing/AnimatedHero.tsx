@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { animate, createScope, stagger, type Scope } from 'animejs'
+import { animate } from 'animejs/animation'
+import { createScope, type Scope } from 'animejs/scope'
+import { stagger } from 'animejs/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
