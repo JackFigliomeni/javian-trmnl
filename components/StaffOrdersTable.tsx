@@ -227,19 +227,19 @@ export default function StaffOrdersTable({
   return (
     <div className="bg-[#FBF7F2] border border-[#C4A882]">
       {/* Filter Tabs */}
-      <div className="px-6 pt-5 pb-4 border-b border-[#C4A882]">
+      <div className="px-8 pt-7 pb-5 border-b border-[#C4A882]">
         <h2
-          className="text-base font-bold text-[#2C1810] pb-2 mb-4"
+          className="text-2xl font-bold text-[#2C1810] pb-3 mb-5"
           style={{ borderBottom: '1px solid #7B1A1A' }}
         >
           All Orders
         </h2>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-5">
           {(['ALL', ...ALL_STATUSES] as const).map((s) => (
             <button
               key={s}
               onClick={() => setActiveFilter(s)}
-              className={`text-sm pb-1 ${
+              className={`text-base pb-1 ${
                 activeFilter === s
                   ? 'border-b-2 border-[#7B1A1A] text-[#7B1A1A]'
                   : 'text-[#6B4226]'
@@ -258,19 +258,19 @@ export default function StaffOrdersTable({
 
       {/* Desktop Table */}
       <div className="hidden lg:block overflow-x-auto">
-        <table className="w-full text-sm" style={{ borderCollapse: 'collapse' }}>
+        <table className="w-full text-base" style={{ borderCollapse: 'collapse' }}>
           <thead>
-            <tr className="bg-[#3D2208] text-[#F5EEE6] text-xs uppercase tracking-wider text-left">
-              <th className="px-4 py-3 font-medium">Client</th>
-              <th className="px-4 py-3 font-medium">Provider</th>
-              <th className="px-4 py-3 font-medium">Flight</th>
-              <th className="px-4 py-3 font-medium">Departure</th>
-              <th className="px-4 py-3 font-medium">Pax</th>
-              <th className="px-4 py-3 font-medium">Location</th>
-              <th className="px-4 py-3 font-medium">Status</th>
-              <th className="px-4 py-3 font-medium">Price</th>
-              <th className="px-4 py-3 font-medium">Update</th>
-              <th className="px-4 py-3 font-medium"></th>
+            <tr className="bg-[#3D2208] text-[#F5EEE6] text-sm uppercase tracking-wider text-left">
+              <th className="px-5 py-4 font-medium">Client</th>
+              <th className="px-5 py-4 font-medium">Provider</th>
+              <th className="px-5 py-4 font-medium">Flight</th>
+              <th className="px-5 py-4 font-medium">Departure</th>
+              <th className="px-5 py-4 font-medium">Pax</th>
+              <th className="px-5 py-4 font-medium">Location</th>
+              <th className="px-5 py-4 font-medium">Status</th>
+              <th className="px-5 py-4 font-medium">Price</th>
+              <th className="px-5 py-4 font-medium">Update</th>
+              <th className="px-5 py-4 font-medium"></th>
             </tr>
           </thead>
           <tbody>
@@ -278,7 +278,7 @@ export default function StaffOrdersTable({
               <tr>
                 <td
                   colSpan={10}
-                  className="px-6 py-10 text-center text-[#6B4226] text-sm border-b border-[#C4A882]"
+                  className="px-6 py-12 text-center text-[#6B4226] text-base border-b border-[#C4A882]"
                 >
                   No orders found.
                 </td>
@@ -289,28 +289,28 @@ export default function StaffOrdersTable({
                 key={order.id}
                 className={idx % 2 === 0 ? 'bg-[#FBF7F2]' : 'bg-[#F5EEE6]'}
               >
-                <td className="px-4 py-3 text-[#2C1810] border-b border-[#C4A882]">
+                <td className="px-5 py-4 text-[#2C1810] border-b border-[#C4A882]">
                   {order.clientName}
                 </td>
-                <td className="px-4 py-3 text-[#6B4226] border-b border-[#C4A882]">
+                <td className="px-5 py-4 text-[#6B4226] border-b border-[#C4A882]">
                   {order.providerName}
                 </td>
-                <td className="px-4 py-3 font-bold text-[#7B1A1A] border-b border-[#C4A882]">
+                <td className="px-5 py-4 font-bold text-[#7B1A1A] border-b border-[#C4A882]">
                   {order.flightNumber}
                 </td>
-                <td className="px-4 py-3 text-[#6B4226] whitespace-nowrap border-b border-[#C4A882]">
+                <td className="px-5 py-4 text-[#6B4226] whitespace-nowrap border-b border-[#C4A882]">
                   {formatDateTime(order.departureTime)}
                 </td>
-                <td className="px-4 py-3 text-[#6B4226] border-b border-[#C4A882]">
+                <td className="px-5 py-4 text-[#6B4226] border-b border-[#C4A882]">
                   {order.passengerCount}
                 </td>
-                <td className="px-4 py-3 text-[#6B4226] max-w-[160px] truncate border-b border-[#C4A882]">
+                <td className="px-5 py-4 text-[#6B4226] max-w-[160px] truncate border-b border-[#C4A882]">
                   {order.deliveryLocation}
                 </td>
-                <td className="px-4 py-3 border-b border-[#C4A882]">
+                <td className="px-5 py-4 border-b border-[#C4A882]">
                   <OrderStatusBadge status={order.status} />
                 </td>
-                <td className="px-4 py-3 border-b border-[#C4A882]">
+                <td className="px-5 py-4 border-b border-[#C4A882]">
                   <input
                     type="number"
                     placeholder="--"
@@ -318,7 +318,7 @@ export default function StaffOrdersTable({
                     min="0"
                     defaultValue={order.orderPrice ?? ''}
                     key={order.id + '-price'}
-                    className="w-20 px-2 py-1 text-sm focus:outline-none"
+                    className="w-24 px-2 py-1.5 text-base focus:outline-none"
                     style={{ border: '1px solid #C4A882', backgroundColor: 'transparent', color: '#2C1810' }}
                     onFocus={(e) => { e.currentTarget.style.borderColor = '#7B1A1A' }}
                     onBlur={(e) => {
@@ -327,14 +327,14 @@ export default function StaffOrdersTable({
                     }}
                   />
                 </td>
-                <td className="px-4 py-3 border-b border-[#C4A882]">
+                <td className="px-5 py-4 border-b border-[#C4A882]">
                   <select
                     value={order.status}
                     disabled={updatingId === order.id}
                     onChange={(e) =>
                       handleStatusChange(order.id, e.target.value)
                     }
-                    className="border border-[#C4A882] text-xs px-2 py-1 bg-[#FBF7F2] text-[#2C1810] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50 cursor-pointer"
+                    className="border border-[#C4A882] text-sm px-2 py-1.5 bg-[#FBF7F2] text-[#2C1810] focus:outline-none focus:border-[#7B1A1A] disabled:opacity-50 cursor-pointer"
                   >
                     {ALL_STATUSES.map((s) => (
                       <option key={s} value={s}>
@@ -343,10 +343,10 @@ export default function StaffOrdersTable({
                     ))}
                   </select>
                 </td>
-                <td className="px-4 py-3 border-b border-[#C4A882]">
+                <td className="px-5 py-4 border-b border-[#C4A882]">
                   <button
                     onClick={() => setSelectedOrder(order)}
-                    className="text-xs text-[#7B1A1A] underline whitespace-nowrap"
+                    className="text-sm text-[#7B1A1A] underline whitespace-nowrap"
                   >
                     View Details
                   </button>
@@ -371,14 +371,14 @@ export default function StaffOrdersTable({
           >
             <div className="flex items-start justify-between">
               <div>
-                <p className="font-bold text-[#7B1A1A] text-lg">
+                <p className="font-bold text-[#7B1A1A] text-xl">
                   {order.flightNumber}
                 </p>
-                <p className="text-[#6B4226] text-sm">{order.clientName}</p>
+                <p className="text-[#6B4226] text-base">{order.clientName}</p>
               </div>
               <OrderStatusBadge status={order.status} />
             </div>
-            <div className="text-sm text-[#2C1810] space-y-1">
+            <div className="text-base text-[#2C1810] space-y-1">
               <p>
                 <span className="text-[#6B4226]">Provider: </span>
                 {order.providerName}

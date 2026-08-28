@@ -118,11 +118,11 @@ export default async function StaffPage() {
         <StatCard label="Total Revenue" value={revenueDisplay} valueColor="#3D2208" />
       </div>
 
+      {/* Orders Table — primary focus */}
+      <StaffOrdersTable initialOrders={serializedOrders} />
+
       {/* Calendar */}
       <CalendarView orders={serializedOrders} />
-
-      {/* Orders Table */}
-      <StaffOrdersTable initialOrders={serializedOrders} />
     </div>
   )
 }

@@ -12,6 +12,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [focusedField, setFocusedField] = useState<'username' | 'password' | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -49,7 +50,9 @@ export default function LoginPage() {
     width: '100%',
     background: 'transparent',
     border: 'none',
-    borderBottom: '1px solid #C4A882',
+    borderBottomWidth: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomColor: '#C4A882',
     padding: '8px 0',
     fontSize: '22px',
     color: '#2C1810',
@@ -139,17 +142,36 @@ export default function LoginPage() {
             >
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onFocus={() => setFocusedField('password')}
-              onBlur={() => setFocusedField(null)}
-              style={focusedField === 'password' ? underlineFocused : underlineBase}
-            />
+            <div className="relative">
+              <input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onFocus={() => setFocusedField('password')}
+                onBlur={() => setFocusedField(null)}
+                style={{
+                  ...(focusedField === 'password' ? underlineFocused : underlineBase),
+                  paddingRight: '56px',
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute right-0 top-1/2 -translate-y-1/2"
+                style={{
+                  fontSize: '11px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  color: '#6B4226',
+                }}
+                tabIndex={-1}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
           </div>
 
           {error && (
