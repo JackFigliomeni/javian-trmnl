@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -87,6 +88,20 @@ export default function LoginPage() {
             className="object-contain"
           />
         </div>
+
+        {/* Back to main page */}
+        <Link
+          href="/"
+          className="inline-block mb-10"
+          style={{
+            fontSize: '11px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em',
+            color: '#6B4226',
+          }}
+        >
+          ← Back to Main Page
+        </Link>
 
         {/* Welcome headline */}
         <h1

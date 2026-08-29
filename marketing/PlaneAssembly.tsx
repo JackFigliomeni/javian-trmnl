@@ -70,38 +70,38 @@ export default function PlaneAssembly() {
       >
         {/* Tail fin */}
         <g className="plane-part-tailFin" style={partStyle}>
-          <path d="M232,222 C195,175 130,95 75,25 L115,248 Z" />
+          <path d="M225,220 C185,175 120,80 68,15 L108,250 Z" />
         </g>
 
         {/* Tail stabilizer */}
         <g className="plane-part-tailStabilizer" style={partStyle}>
-          <path d="M258,220 C280,200 300,175 316,150 L212,220 Z" />
+          <path d="M280,218 C300,200 315,183 330,165 L235,222 Z" />
         </g>
 
         {/* Wing */}
         <g className="plane-part-wing" style={partStyle}>
-          <path d="M615,298 C602,320 590,340 580,358 C500,378 420,398 355,418 L398,388 C465,368 545,335 615,298 Z" />
+          <path d="M620,296 L575,345 L358,418 L400,385 Z" />
         </g>
 
         {/* Engine */}
         <g className="plane-part-engine" style={partStyle}>
-          <path d="M540,362 C540,345 563,334 590,334 C617,334 638,347 638,367 C638,387 617,400 590,400 C563,400 540,387 540,362 Z" />
+          <path d="M555,378 C555,361 578,350 605,350 C632,350 653,363 653,383 C653,403 632,416 605,416 C578,416 555,403 555,378 Z" />
         </g>
 
         {/* Nose gear */}
         <g className="plane-part-noseGear" style={partStyle}>
-          <path d="M750,320 C750,335 750,350 750,362" />
-          <circle cx="750" cy="373" r="10" />
+          <path d="M750,330 C750,345 750,360 750,372" />
+          <circle cx="750" cy="383" r="10" />
         </g>
 
         {/* Main gear */}
         <g className="plane-part-mainGear" style={partStyle}>
-          <path d="M335,335 C335,348 335,361 335,372" />
-          <circle cx="335" cy="383" r="10" />
+          <path d="M330,345 C330,358 330,371 330,382" />
+          <circle cx="330" cy="393" r="10" />
         </g>
 
         {/* Fuselage (stays put as the anchor piece) */}
-        <path d="M860,298 C838,266 800,244 755,233 C690,218 400,213 235,220 C185,222 140,232 108,250 C96,257 90,264 88,270 C92,278 105,286 130,292 C220,312 380,330 520,340 C650,348 760,338 815,315 C835,308 850,304 860,298 Z" />
+        <path d="M862,300 C838,266 800,244 755,233 C690,218 400,213 235,220 C185,222 140,232 108,250 L65,262 C90,272 105,282 130,292 C220,312 380,330 520,340 C650,348 760,338 815,315 C835,308 850,304 860,298 Z" />
 
         {/* Canopy: windows + cockpit glass */}
         <g className="plane-part-canopy" style={partStyle}>

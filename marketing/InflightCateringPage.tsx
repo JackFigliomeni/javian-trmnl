@@ -2,6 +2,7 @@ import ContactForm from './ContactForm'
 import AnimatedHero from './AnimatedHero'
 import ScrollReveal from './ScrollReveal'
 import PlaneAssembly from './PlaneAssembly'
+import FoodGallery from './FoodGallery'
 
 export default function InflightCateringPage() {
   return (
@@ -47,8 +48,25 @@ export default function InflightCateringPage() {
           </div>
         </ScrollReveal>
 
+        {/* Sample Fare */}
+        <div className="border-t mb-16" style={{ borderColor: '#C4A882' }} />
+        <ScrollReveal>
+          <div className="mb-6">
+            <h2
+              className="mb-2"
+              style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 500, color: '#2C1810' }}
+            >
+              A Taste of What We Serve
+            </h2>
+            <p style={{ fontSize: '15px', color: '#6B4226' }}>
+              A few samples from our catering menu.
+            </p>
+          </div>
+          <FoodGallery />
+        </ScrollReveal>
+
         {/* Contact */}
-        <div className="border-t mb-12" style={{ borderColor: '#C4A882' }} />
+        <div className="border-t my-16" style={{ borderColor: '#C4A882' }} />
         <PlaneAssembly />
         <ScrollReveal>
           <div className="mb-10">
