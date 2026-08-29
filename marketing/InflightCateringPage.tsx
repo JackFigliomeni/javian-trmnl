@@ -1,7 +1,7 @@
 import ContactForm from './ContactForm'
 import AnimatedHero from './AnimatedHero'
 import ScrollReveal from './ScrollReveal'
-import PlaneAssembly from './PlaneAssembly'
+import CabinDoorReveal from './CabinDoorReveal'
 import FoodGallery from './FoodGallery'
 
 export default function InflightCateringPage() {
@@ -67,7 +67,7 @@ export default function InflightCateringPage() {
 
         {/* Contact */}
         <div className="border-t my-16" style={{ borderColor: '#C4A882' }} />
-        <PlaneAssembly />
+        <CabinDoorReveal />
         <ScrollReveal>
           <div className="mb-10">
             <h2
